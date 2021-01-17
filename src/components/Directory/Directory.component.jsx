@@ -10,45 +10,31 @@ class Directory extends React.Component {
         this.state = {
             sections : [
                 {
-                    "id": 1,
-                    "vendor": "Gap",
-                    "name": "Men's Pullover Sweatshirt",
+                    "id": 1,                    
                     "image_src": ["https://cdn.shopify.com/s/files/1/0455/2176/4502/files/Sweater_0.jpg?v=1603266982"],
-                    "price": "74",
                     "tag": "T-shirt",
-                    "compare_at_price": "200",
+                    "linkUrl": "T-shirt"
                     
                 },
              {
                     "id": 2,
-                    "vendor": "Puma",
-                    "name": "Solid Polo Collar Grey T-shirt",
                     "image_src": ["https://cdn.shopify.com/s/files/1/0455/2176/4502/files/Denim_0.jpg?v=1603267107"],
-                    "price": "74",
-                    "compare_at_price": "200",
                     "tag": "Denim",
-                    
+                    "linkUrl": "Denim"
                 },
              {
                     "id": 3,
-                    "vendor": "U.S Polo Assn.",
-                    "name": "men Blue Regular Fit Striped Casual Shirt",
                     "image_src": ["https://cdn.shopify.com/s/files/1/0455/2176/4502/files/Shirt_4.jpg?v=1603267306"],
-                    "price": "50",
-                    "compare_at_price": "100",
                     "tag": "shirt",
+                    "linkUrl": "shirt"
                     
                 },
              {
                     "id": 4,
-                    "vendor": "Here & Now",
-                    "name": "Men Blue Solid Biker jacket",
                     "image_src": ["https://cdn.shopify.com/s/files/1/0455/2176/4502/files/Jacket_1.jpg?v=1603267865"],
-                    "price": "40",
                     "size" : "large",
-                    "compare_at_price": "80",
                     "tag": "jacket",
-                  
+                    "linkUrl": "jacket"
                 },
              ]
         }
@@ -58,8 +44,9 @@ class Directory extends React.Component {
         return (
             <div className='directory-menu'>
                 {
-                    this.state.sections.map(({id, image_src, tag, size}) => (
-                        <MenuItem key={id} image_src={image_src} tag={tag} size={size} />
+                    this.state.sections.map(({id, ...otherSectionProps}) => (
+                        <MenuItem key={id} {...otherSectionProps}
+                        />
                     ))
                 }
             </div>
