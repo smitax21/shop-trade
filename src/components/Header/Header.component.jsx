@@ -1,12 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import { ReactComponent as Logo} from '../../Assets/shop-trade.svg';
 import { auth } from '../../Firebase/Firebase.utils';
+import  CartIcon  from '../Cart-icon/Cart-icon.component';
+import CartDropdown from '../Cart-dropdown/Cart-dropdown.component';
 
 import './Header.styles.scss';
 
-const Header = ({ currentUser }) => {
+const Header = ({ currentUser, hidden }) => {
     return (
         <div className='header'>
             <Link className='logo-container' to="/">
@@ -34,8 +37,16 @@ const Header = ({ currentUser }) => {
                 }
                 
             </div>
+            < CartIcon />
+            {
+                hidden ? null : < CartDropdown />
+            }
         </div>
     )
-}
+};
 
-export default Header;
+const mapStateToProps = ({user: {currentUser}, cart: {hidden}}) => ({
+    currentUser, hidden
+})
+
+export default connect(mapStateToProps)(Header);
